@@ -1,0 +1,26 @@
+#whole{
+    padding: 1%;
+    width : 230px;
+    border: 2px solid black;
+    background-color: aqua;
+}
+#text{
+    font-size: large;
+    padding : 0.5%
+}
+.buttons{
+display: flex;
+flex-direction: column;
+} 
+#name{
+/* padding : 0.5%; */
+font-weight: bolder;
+font-size: large;
+text-align: center;
+}
+.buttons button{
+    padding: 10px;
+    width : 23%;
+    background-color: white;
+    color : black
+}
