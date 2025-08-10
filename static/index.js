@@ -2,7 +2,7 @@ btns = document.querySelectorAll('.buttons button')
     textArea = document.querySelector('#text')
     let res = ""
     btns.forEach((btn) => {
-        btn.addEventListener('click', ()=>{
+        btn.addEventListener('click', async ()=>{
             const value = btn.innerText
             if (value !== '=' && value !== 'c'){
                 res+=value
@@ -13,8 +13,8 @@ btns = document.querySelectorAll('.buttons button')
             }else if(value === '='){
                try{
                 if(res){
-                    res = eval(res)
-                    textArea.value = res
+                        textArea.value = await resultValue(res)
+                        res = ""
                 }
                }catch(err){
 
@@ -22,3 +22,14 @@ btns = document.querySelectorAll('.buttons button')
             }
         })
     })
+
+
+    let resultValue = async (res) => {
+        let data = await fetch('/process', {
+            method : 'POST',
+            headers : {'content-type':'application/json'},
+            body : JSON.stringify({'res':res})
+        })
+        data = await data.json()
+        return data.result
+    }
